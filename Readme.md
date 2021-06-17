@@ -28,7 +28,7 @@ Then we can use `./multi-tbx dump_region` to get VCF records for a pre-specified
 ❯ ./multi-tbx dump_region my_index chr10:1,000,000-1,010,000 > output
 ```
 
-The tool is useful for quick look up when the variant data are scattered in many files.
+The tool is useful for quick look up when the variant data is scattered in many files by collecting information in the tbi file in one place. It handles the simple but tedius-to-do-manually logic for fetch a set of variants in a region automatically.
 
 
 Usage:
