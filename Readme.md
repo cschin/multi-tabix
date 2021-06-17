@@ -25,7 +25,7 @@ we can create a (text) meta index file from those `tbi` files:
 
 Then we can use `./multi-tbx dump_region` to get VCF records for a pre-specified region:
 ```
-❯ ./multi-tbx dump_region my_tbi_files chr10:1,000,000-1,010,000 > output
+❯ ./multi-tbx dump_region my_index chr10:1,000,000-1,010,000 > output
 ```
 
 The tool is useful for quick look up when the variant data are scattered in many files.
