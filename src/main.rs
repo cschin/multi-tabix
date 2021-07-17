@@ -280,7 +280,7 @@ fn main() -> Result<(), std::io::Error> {
                         line.clear();
                         reader.read_line(&mut line).expect("error on getting vcf record");
                         let splitted = line.split_whitespace();
-                        splitted.enumerate().for_each(|(c_idx, s)| {
+                        for (c_idx, s) in splitted.enumerate() {
                             if coordinate_col == c_idx as u32 {
                                 let coordinate = s
                                     .parse::<u32>()
@@ -288,13 +288,13 @@ fn main() -> Result<(), std::io::Error> {
                                 cur_pos = coordinate;
                                 if coordinate >= rgn.1 && coordinate <= rgn.2 {
                                     print!("{}", line);
-                                    return;
                                 }
+                                break;
                             }
                             if coordinate_col < c_idx as u32 {
-                                return;
+                                continue;
                             };
-                        });
+                        };
 
                         if cur_pos > rgn.2 {
                             break;
