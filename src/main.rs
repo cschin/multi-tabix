@@ -21,7 +21,7 @@ struct IndexRecord {
     vfs_end: usize,
 }
 
-fn dump_mata_index(path: String) -> Result<(), std::io::Error> {
+fn dump_meta_index(path: String) -> Result<(), std::io::Error> {
     let f = BufReader::new(File::open(&path)?);
     f.lines()
         .into_iter()
@@ -201,7 +201,7 @@ fn main() -> Result<(), std::io::Error> {
             (@arg tbi_files: +required "Path to a list of tabix index files")
         )
         (@subcommand dump_region =>
-            (@arg index_file: +required "Path to a mata tabix index file")
+            (@arg index_file: +required "Path to a meta tabix index file")
             (@arg region: +required "the region of interest in the format {chr_str}:{bgn_u32}-{end_u32}")
             (@arg whole_block: --use_whole_block "dump whole index block")
             (@arg coordinate_column: --col "integer, optional, specific the column (default to the 2nd column) for coordinates")
@@ -215,7 +215,7 @@ fn main() -> Result<(), std::io::Error> {
                 .value_of("tbi_files")
                 .expect("error to get the list of tbi files")
                 .to_string();
-            dump_mata_index(tbi_files)?;
+            dump_meta_index(tbi_files)?;
         }
         ("dump_region", Some(sub_m)) => {
             let index_file = sub_m
