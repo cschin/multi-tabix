@@ -81,6 +81,6 @@ FLAGS:
         --use_whole_block    dump whole index block
 
 ARGS:
-    <index_file>    Path to a mata tabix index file
+    <index_file>    Path to a meta tabix index file
     <region>        the region of interest in the format {chr_str}:{bgn_u32}-{end_u32}
 ```
