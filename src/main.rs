@@ -204,6 +204,7 @@ fn main() -> Result<(), std::io::Error> {
             (@arg index_file: +required "Path to a mata tabix index file")
             (@arg region: +required "the region of interest in the format {chr_str}:{bgn_u32}-{end_u32}")
             (@arg whole_block: --use_whole_block "dump whole index block")
+            (@arg only_file_path: --only_file_path "just show the vcf.gz file locations")
             (@arg coordinate_column: --col "integer, optional, specific the column (default to the 2nd column) for coordinates")
         )
     )
@@ -228,6 +229,7 @@ fn main() -> Result<(), std::io::Error> {
                 .to_string();
 
             let use_whole_block = sub_m.is_present("whole_block");
+            let only_file_path = sub_m.is_present("only_file_path");
             let coordinate_col = match sub_m.value_of("coordinate_column") {
                 Some(col) => {
                     col.parse::<u32>()
@@ -258,12 +260,19 @@ fn main() -> Result<(), std::io::Error> {
             });
 
             vfs_offsets.iter_mut().for_each(|(path, offsets)| {
+
+                if only_file_path {
+                    println!("{}", path);
+                    return;
+                }
+
                 offsets.sort();
                 let mut reader = BGZFReader::new(File::open(&path).unwrap());
                 let mut line = String::new();
                 let cur_offset = offsets[0].0 as u64;
                 let max_offset = offsets[offsets.len() - 1].1 as u64;
                 reader.bgzf_seek(cur_offset as u64).unwrap();
+           
 
                 if use_whole_block {
                     loop {
