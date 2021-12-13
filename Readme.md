@@ -20,12 +20,12 @@ For example, if we have multiple VCF files (assuming covering non-overlapped reg
 we can create a (text) meta index file from those `tbi` files:
 
 ```
-❯ ./multi-tbx create_index my_tbi_files > my_index
+❯ ./multi_tbx create_index my_tbi_files > my_index
 ```
 
 Then we can use `./multi-tbx dump_region` to get VCF records for a pre-specified region:
 ```
-❯ ./multi-tbx dump_region my_index chr10:1,000,000-1,010,000 > output
+❯ ./multi_tbx dump_region my_index chr10:1,000,000-1,010,000 > output
 ```
 
 The tool is useful for quick look up when the variant data is scattered in many files by collecting information in the tbi file in one place. It handles the simple but tedius-to-do-manually logic for fetch a set of variants in a region automatically.
@@ -36,11 +36,11 @@ Usage:
 ```
 ❯ multi_tbx --help
 multi_tbx 0.1.0
-Jason Chin <jchin@dnanexus.com>
+Jason Chin
 
 
 USAGE:
-    multi-tbx [SUBCOMMAND]
+    multi_tbx [SUBCOMMAND]
 
 FLAGS:
     -h, --help       Prints help information
@@ -57,7 +57,7 @@ SUBCOMMANDS:
 multi_tbx-create_index
 
 USAGE:
-    multi-tbx create_index <tbi_files>
+    multi_tbx create_index <tbi_files>
 
 FLAGS:
     -h, --help       Prints help information
@@ -72,11 +72,12 @@ ARGS:
 multi_tbx-dump_region
 
 USAGE:
-    multi-tbx dump_region [FLAGS] <index_file> <region>
+    multi_tbx dump_region [FLAGS] <index_file> <region>
 
 FLAGS:
         --col                integer, optional, specific the column (default to the 2nd column) for coordinates
     -h, --help               Prints help information
+        --only_file_path     just show the vcf.gz file locations
     -V, --version            Prints version information
         --use_whole_block    dump whole index block
 
