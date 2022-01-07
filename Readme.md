@@ -10,9 +10,9 @@ For example, if we have multiple VCF files (assuming covering non-overlapped reg
 
 ```
 ❯ cat my_tbi_files
-/mnt/project/Bulk/Exome sequences/Population level exome OQFE variants, pVCF format/ukb23156_c10_b0_v1.vcf.gz.tbi
-/mnt/project/Bulk/Exome sequences/Population level exome OQFE variants, pVCF format/ukb23156_c10_b10_v1.vcf.gz.tbi
-/mnt/project/Bulk/Exome sequences/Population level exome OQFE variants, pVCF format/ukb23156_c10_b11_v1.vcf.gz.tbi
+/data/vcf_chunk1.vcf.gz.tbi
+/data/vcf_chunk2.vcf.gz.tbi
+/data/vcf_chunk3.vcf.gz.tbi
 ```
 
 (We assume the vcf files are in the directory of the corresponded `tbi` files.)
